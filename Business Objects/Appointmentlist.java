@@ -41,13 +41,13 @@ public class Appointmentlist {
             System.out.println(sql);
             ResultSet rs = stmt.executeQuery(sql);
             while(rs.next()){
-                
+                int Id=(rs.getInt("id"));
                 String date=(rs.getString("apptdateTime"));
                 String cust = (rs.getString("CustomerId"));
                 String Proc=(rs.getString("procCode"));
                 String naid=(rs.getString("artists_Id"));
                              
-                Appointments apt = new Appointments(date,custId, Proc,naid);
+                Appointments apt = new Appointments(Id,date,custId, Proc,naid);
                 appt.add(apt);
             }
         }

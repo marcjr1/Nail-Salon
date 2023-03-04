@@ -7,6 +7,7 @@ package BusinessObjects;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,8 +20,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Marc-Henry Moise Jr
  */
-@WebServlet(name = "BookAppointmentServlet", urlPatterns = {"/BookAppointmentServlet"})
-public class BookAppointmentServlet extends HttpServlet {
+@WebServlet(name = "EditAppt", urlPatterns = {"/EditAppt"})
+public class ForwardToEditApptServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,27 +37,22 @@ public class BookAppointmentServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-             HttpSession pSession = request.getSession();
-            HttpSession aSession = request.getSession();
-
-            String date, custId, procedure ,naid;
-            Customers c1;
+            HttpSession session = request.getSession();
+            HttpSession sessId = request.getSession();
+            HttpSession sessionList = request.getSession();
+            List<Appointments> getcustAppt = (List<Appointments>) sessionList.getAttribute("Session_list");
             Appointments appt;
+            appt = (Appointments) session.getAttribute("appt");
+            String id = request.getParameter("id");
+            sessId.setAttribute("id",id);
             
-            date = request.getParameter("date");
-            procedure = request.getParameter("proc_code");
-            naid = request.getParameter("NailArtist");
-           
-           
+            out.println(id);
+            appt.selectID(Integer.parseInt(id));
 
-            c1 = (Customers)pSession.getAttribute("c1");
-            appt = (Appointments) aSession.getAttribute("appt");
-            custId = c1.getCustomer_ID();
-            appt.insertDB(date, custId, procedure, naid);
-            System.out.println(appt);
+            session.setAttribute("appt", appt);
+            RequestDispatcher dp = request.getRequestDispatcher("CustEditAppt.jsp");
+            dp.forward(request, response);
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("CustomerDashboard.jsp");
-            dispatcher.forward(request, response);
         }
     }
 

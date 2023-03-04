@@ -7,7 +7,7 @@ package BusinessObjects;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,8 +19,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Marc-Henry Moise Jr
  */
-@WebServlet(name = "BookAppointmentServlet", urlPatterns = {"/BookAppointmentServlet"})
-public class BookAppointmentServlet extends HttpServlet {
+@WebServlet(name = "EditAppt2", urlPatterns = {"/EditAppt2"})
+public class EditAppt2 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,28 +35,15 @@ public class BookAppointmentServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-             HttpSession pSession = request.getSession();
-            HttpSession aSession = request.getSession();
-
-            String date, custId, procedure ,naid;
-            Customers c1;
-            Appointments appt;
             
-            date = request.getParameter("date");
-            procedure = request.getParameter("proc_code");
-            naid = request.getParameter("NailArtist");
+            HttpSession session = request.getSession();
+           // List<Appointments> appt = (List<Appointments>)session.getAttribute("appt");
+            String id = (String)session.getAttribute("setID");
+            out.println("This is the id : " + id);
+            System.out.println("this is the ID " + id);
            
            
-
-            c1 = (Customers)pSession.getAttribute("c1");
-            appt = (Appointments) aSession.getAttribute("appt");
-            custId = c1.getCustomer_ID();
-            appt.insertDB(date, custId, procedure, naid);
-            System.out.println(appt);
-
-            RequestDispatcher dispatcher = request.getRequestDispatcher("CustomerDashboard.jsp");
-            dispatcher.forward(request, response);
+            
         }
     }
 
