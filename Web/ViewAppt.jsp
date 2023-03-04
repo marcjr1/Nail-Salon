@@ -77,9 +77,9 @@
                     <td><%=l.getartists_Id()%></td>
 
                     <td class=" d-none text-center">
-                        <%--
-                        <a class='btn btn-info btn-xs' href="PatientEditAppointmentServlet?id=<%=a.getId()%>"><span class="glyphicon glyphicon-edit "></span> Edit</a>
-                        --%>
+                        
+                        <a class='btn btn-info btn-xs' href="EditAppt"><span class="glyphicon glyphicon-edit "></span> Edit</a>
+                       
                         <a href="#" class="btn btn-danger btn-xs"><span
                                 class="glyphicon glyphicon-remove"></span> Del</a>
                     </td>

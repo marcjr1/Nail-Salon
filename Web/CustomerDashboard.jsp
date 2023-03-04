@@ -78,16 +78,17 @@
         </table>
 
         <a href="BookAppointment.jsp"><button class="btn">Book Appointment</button></a>
-        <a href="ViewAppt.jsp"><button class="btn">View Appointment</button></a>
         <a href="Procedures.jsp"><button class="btn"> View Procedures</button></a>
         <a href="UpdatePatientProfile.jsp"><button class="btn">Update Profile</button></a>
         
         <form action="BookAppointmentServlet" method="POST">
-            <table class="content-table " style="width:80%">
+            <table class="content-table " style="width:40%;">
 
                 <%
                     Appointmentlist appt = new Appointmentlist();
                     List<Appointments> list = appt.getcustAppt(c1.getCustomer_ID());
+                     HttpSession sessionList = request.getSession();
+                            sessionList.setAttribute("updatedAppt", appt);
                     if (list != null) {
 
                         for (Appointments l : list) {%>
@@ -107,14 +108,16 @@
                     <td><%=l.getartists_Id()%></td>
 
                     <td class=" d-none text-center">
-                        <%--
-                        <a class='btn btn-info btn-xs' href="PatientEditAppointmentServlet?id=<%=a.getId()%>"><span class="glyphicon glyphicon-edit "></span> Edit</a>
-                        --%>
+                      
+                        <a class='btn btn-info btn-xs' href="EditAppt?id=<%=l.getiD()%>"><span class="glyphicon glyphicon-edit "></span> Edit</a>
+                       
                         <a href="#" class="btn btn-danger btn-xs"><span
                                 class="glyphicon glyphicon-remove"></span> Del</a>
                     </td>
                 </tr>
                 <%}
+
+
                 
                 }%>
 

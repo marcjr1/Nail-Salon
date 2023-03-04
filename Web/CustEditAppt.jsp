@@ -1,9 +1,11 @@
 <%-- 
-    Document   : BookAppointment
-    Created on : Feb 6, 2023, 11:22:30 AM
+    Document   : CustEditAppt
+    Created on : Mar 1, 2023, 1:51:08 PM
     Author     : Marc-Henry Moise Jr
 --%>
 
+<%@page import="BusinessObjects.Appointments"%>
+<%@page import="BusinessObjects.Customers"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -15,12 +17,18 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
         <link rel="stylesheet" href="Anfr.css">
 
-        <title>Appointment Form</title>
+        <title>Edit Appointment Form</title>
     </head>
     <body>
         <%
-            Calendar calendar = Calendar.getInstance();
-            String dayName = new SimpleDateFormat("EEEE").format(calendar.getTime());
+            Customers c1;
+            c1 = (Customers) session.getAttribute("c1");
+            String cid = c1.getCustomer_ID();
+            Appointments appt;
+            appt = (Appointments) session.getAttribute("appt");
+            String apt = appt.getcustomerId();
+            String id =(String)session.getAttribute("id");
+
         %>
         <div class="menu-bar">
             <h1 class="logo">New<span> Nails Salon</span></h1>
@@ -54,17 +62,17 @@
 
             <div class="form__text">Book Appointment</div>
 
-            <form action="BookAppointmentServlet" method="POST">
+            <form action="EditAppt2" method="POST">
                 <p>
-                    <label class="Nid">Pick a date</label><br>
-                    <input class="proc" type="date" name="date" required>
+                    <label class="Nid">Pick a new date</label><br>
+                    <input class="proc" type="date" name="date" value="<%=appt.getapptdt()%>" required>
                 </p>
                 <p><label class="Nid">Choose a  procedure</label></p>
                 <p>
 
                     <select class="proc" name="proc_code" required>Chiropractor 
 
-                        <option value="">None</option>
+                        <option value="<%=appt.getproccode()%>"><%=appt.getproccode()%></option>
                         <option value="P110">P110</option>
                         <option value="P111">P111</option>
                         <option value="P112">P112</option>
@@ -79,7 +87,7 @@
                 <p><label class="Nid">Choose a Nail ArtistId</label></p>
                 <p>
                     <select class="proc" name="NailArtist" required>Nail Artists
-                        <option value="None">None</option>
+                        <option value="<%=appt.getartists_Id()%>"><%=appt.getartists_Id()%></option>
                         <option value="W200">W200</option>
                         <option value="W201">W201</option>
                         <option value="W202">W202</option>
@@ -90,16 +98,20 @@
                     </select>
                 </p>
                 <button type="button" class="btn" name="modal">Cancel</button>
-                <button type="submit" class="btn"  name="submit">Confirm Appointment</button>
+                <button type="submit" class="btn"  name="submit">Edit Appointment</button>
             </form> 
 
         </div>
     </div>
     <script>
-            alert("Sorry we are close on saturdays and sundays");
+        alert("Sorry we are close on saturdays and sundays");
     </script>
+    <%
+    session.setAttribute("setID", id);
+    %>
 </body>
 <%-- <p> Values entered: <%= patientID%> + ${param.date}  + ${param.NailArtist} + ${param.proc_code} </p> --%>
 
 
 </html >
+
