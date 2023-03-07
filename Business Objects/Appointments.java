@@ -27,13 +27,12 @@ public class Appointments {
         CustomerId = "";
         artists_Id = "";
         proccode = "";
-        iD=0;
-        
+        iD = 0;
 
     }
 
-    public Appointments(int id,String apt, String Cid, String proc, String aId) {
-        iD=id;
+    public Appointments(int id, String apt, String Cid, String proc, String aId) {
+        iD = id;
         apptdt = apt;
         CustomerId = Cid;
         proccode = proc;
@@ -71,7 +70,7 @@ public class Appointments {
     public String getproccode() {
         return proccode;
     }
-    
+
     /**
      * @return the iD
      */
@@ -103,7 +102,7 @@ public class Appointments {
     /**
      * ************************************************
      * selectDB()gets one patient appointment from the DB
-*************************************************
+     * ************************************************
      */
     public void selectDB(String Cid) {
         CustomerId = Cid;
@@ -122,14 +121,14 @@ public class Appointments {
             setapptdt(rs.getString("apptdateTime"));
             setartists_Id(rs.getString("artists_Id"));
             setproccode(rs.getString("procCode"));
-            
 
         } catch (Exception e) {
             System.out.println(e);
         }
     } //end selectDB()
-    public void selectID( int apid) {
-        iD= apid;
+
+    public void selectID(int apid) {
+        iD = apid;
         //appt.selectDB(pid);
         try {
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
@@ -140,12 +139,19 @@ public class Appointments {
             String sql = "Select * from Appointments where id='" + getiD() + "'";
             System.out.println(sql);
             ResultSet rs = stmt.executeQuery(sql);
-            rs.next();
-            setapptdt(rs.getString("apptdateTime"));
-            setcustomerId(rs.getString("CustomerId"));
-            setartists_Id(rs.getString("artists_Id"));
-            setproccode(rs.getString("procCode"));
-            
+            if (rs.next()) {
+                do {
+                    setapptdt(rs.getString("apptdateTime"));
+                    setcustomerId(rs.getString("CustomerId"));
+                    setartists_Id(rs.getString("artists_Id"));
+                    setproccode(rs.getString("procCode"));
+                } while (rs.next());
+            } else {
+                setapptdt("NO APPOINTMENT AT THIS TIME");
+                setcustomerId("NO CUSTOMER ID AT THIS MOMENT");
+                setartists_Id("NO CUSTOMER ID AT THIS MOMENT");
+                setproccode("NO PROCODE AT THIS MOMENT");         
+            }
 
         } catch (Exception e) {
             System.out.println(e);
@@ -155,13 +161,12 @@ public class Appointments {
     /**
      * ***********************************************************
      * selectDentistDB()gets one dentist appointment from the DB
-*************************************************************
+     * ************************************************************
      */
-
     /**
      * ***************************************************
      * insertDB()inserts one patient appointment into the DB
-*****************************************************
+     * ****************************************************
      */
     public void insertDB(String apt, String Cid, String proc, String aId) {
         apptdt = apt;
@@ -195,7 +200,7 @@ public class Appointments {
     /**
      * ******************************************************
      * updateDB()updates one patient appointment from the DB
-********************************************************
+     * *******************************************************
      */
     public void updateDB() {
         //updateDB() code goes here
@@ -205,7 +210,9 @@ public class Appointments {
 
             Statement stmt = con1.createStatement();
             String sql = "Update Appointments set apptdateTime ='" + getapptdt() + "',"
-                    + "procCode='" + getproccode() + "'," + "artists_Id='" + getartists_Id() + "' Where CustomerId='" + getcustomerId() + "' ";
+                    + "procCode='" + getproccode() + "',"
+                    + "" + "artists_Id='" + getartists_Id() + "' "
+                    + "Where id=" + getiD() + "";
             System.out.println(sql);
             int n = stmt.executeUpdate(sql);
             if (n == 1) {
@@ -222,9 +229,8 @@ public class Appointments {
     /**
      * ************************************************
      * DeleteDB()deletes one patient appointment from the DB
-*************************************************
+     * ************************************************
      */
-
     public void deleteDB() {
 
         try {
@@ -247,14 +253,38 @@ public class Appointments {
         }
     }// end deleteDB()
 
+    public void deleteidDB() {
+
+        try {
+            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+            Connection con1;
+            con1 = DriverManager.getConnection("jdbc:ucanaccess://C://Users//Marc-Henry Moise Jr/Documents/CTCNailSalonMDB.accdb");
+
+            Statement stmt = con1.createStatement();
+            String sql = "Delete from Appointments where id='" + getiD() + "'";
+            System.out.println(sql);
+            int n = stmt.executeUpdate(sql);
+            if (n == 1) {
+                System.out.println("DELETE Successful!!!");
+            } else {
+                System.out.println("DELETE FAILED***********");
+            }
+            con1.close();
+        } catch (Exception e1) {
+            System.out.println(e1);
+        }
+    }// end deleteDB()
+
     public static void main(String args[]) {
         //  TESTER CODE
         // Test SELECT
         //Appointmentlist apt = new Appointmentlist();
 
-        Appointments appt = new  Appointments();
-        //Appointments appt1 = new  Appointments();
-        appt.selectDB("C102");
+        Appointments appt = new Appointments();
+        Appointments appt1 = new Appointments();
+        appt.selectID(3);
+        //appt.setapptdt("2023-06-05");
+        //appt.updateDB();
         //appt.insertDB("12/45/45","C108","P114","W202");
         //appt.setapptdt("08/25/2000");
         //appt.updateDB();

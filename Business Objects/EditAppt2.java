@@ -8,6 +8,7 @@ package BusinessObjects;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,12 +38,39 @@ public class EditAppt2 extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             
             HttpSession session = request.getSession();
-           // List<Appointments> appt = (List<Appointments>)session.getAttribute("appt");
+            HttpSession sessionList = request.getSession();
+           
+           //List<Appointments> appt = (List<Appointments>)session.getAttribute("appt");
             String id = (String)session.getAttribute("setID");
-            out.println("This is the id : " + id);
-            System.out.println("this is the ID " + id);
+            String date,time,proc_code,NailArtist;
+            List<Appointments> getcustAppt = (List<Appointments>)sessionList.getAttribute("Session_list");
+            date = request.getParameter("date");
+            time= request.getParameter("time");
+            proc_code = request.getParameter("proc_code");
+            NailArtist = request.getParameter("NailArtist");
+            String DateTime=date +" "+time;
+            
            
+            out.println(id);
+           out.println(getcustAppt);
+            out.println(date + " " + proc_code + " " + NailArtist);
+            
+            Appointments appt = new Appointments();
+          
+            
+            appt.selectID(Integer.parseInt(id));           
+            appt.setapptdt(DateTime);
+            
+            appt.setproccode(proc_code);
+            appt.setartists_Id(NailArtist);
+            appt.updateDB();
+             
+            
+            session.setAttribute("appt", appt);
            
+            
+           RequestDispatcher dp = request.getRequestDispatcher("CustomerDashboard.jsp");
+            dp.forward(request, response);
             
         }
     }

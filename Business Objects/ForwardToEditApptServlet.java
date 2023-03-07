@@ -40,16 +40,17 @@ public class ForwardToEditApptServlet extends HttpServlet {
             HttpSession session = request.getSession();
             HttpSession sessId = request.getSession();
             HttpSession sessionList = request.getSession();
-            List<Appointments> getcustAppt = (List<Appointments>) sessionList.getAttribute("Session_list");
+            List<Appointments> getcustAppt = (List<Appointments>)sessionList.getAttribute("Session_list");
             Appointments appt;
             appt = (Appointments) session.getAttribute("appt");
             String id = request.getParameter("id");
             sessId.setAttribute("id",id);
             
             out.println(id);
-            appt.selectID(Integer.parseInt(id));
-
+            appt.selectID(Integer.parseInt(id)); 
+            
             session.setAttribute("appt", appt);
+            session.setAttribute("Session_list", getcustAppt);
             RequestDispatcher dp = request.getRequestDispatcher("CustEditAppt.jsp");
             dp.forward(request, response);
 
