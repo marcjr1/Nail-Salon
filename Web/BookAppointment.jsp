@@ -58,6 +58,10 @@
                 <p>
                     <label class="Nid">Pick a date</label><br>
                     <input class="proc" type="date" name="date" required>
+                <p>
+                    <label class="Nid">Pick a Time</label><br>
+                    <input class="proc" type="time" name="time" required>
+                </p>
                 </p>
                 <p><label class="Nid">Choose a  procedure</label></p>
                 <p>
@@ -96,7 +100,7 @@
         </div>
     </div>
     <script>
-            alert("Sorry we are close on saturdays and sundays");
+        alert("Sorry we are close on saturdays and sundays");
     </script>
 </body>
 <%-- <p> Values entered: <%= patientID%> + ${param.date}  + ${param.NailArtist} + ${param.proc_code} </p> --%>

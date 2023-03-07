@@ -82,7 +82,7 @@
         <a href="UpdatePatientProfile.jsp"><button class="btn">Update Profile</button></a>
         
         <form action="BookAppointmentServlet" method="POST">
-            <table class="content-table " style="width:40%;">
+            <table class="content-table " style="width:80%;">
 
                 <%
                     Appointmentlist appt = new Appointmentlist();
@@ -111,7 +111,7 @@
                       
                         <a class='btn btn-info btn-xs' href="EditAppt?id=<%=l.getiD()%>"><span class="glyphicon glyphicon-edit "></span> Edit</a>
                        
-                        <a href="#" class="btn btn-danger btn-xs"><span
+                        <a href="deleteServlet?id=<%=l.getiD()%>" class="btn btn-danger btn-xs"><span
                                 class="glyphicon glyphicon-remove"></span> Del</a>
                     </td>
                 </tr>

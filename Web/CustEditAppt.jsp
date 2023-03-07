@@ -27,9 +27,12 @@
             Appointments appt;
             appt = (Appointments) session.getAttribute("appt");
             String apt = appt.getcustomerId();
-            String id =(String)session.getAttribute("id");
+            String id = (String) session.getAttribute("id");
+            
+            
 
         %>
+
         <div class="menu-bar">
             <h1 class="logo">New<span> Nails Salon</span></h1>
             <ul>
@@ -66,6 +69,10 @@
                 <p>
                     <label class="Nid">Pick a new date</label><br>
                     <input class="proc" type="date" name="date" value="<%=appt.getapptdt()%>" required>
+                </p>
+                <p>
+                    <label class="Nid">Pick a new time </label><br>
+                    <input class="proc" type="time" name="time" value="<%=appt.getapptdt()%>" required>
                 </p>
                 <p><label class="Nid">Choose a  procedure</label></p>
                 <p>
@@ -107,7 +114,7 @@
         alert("Sorry we are close on saturdays and sundays");
     </script>
     <%
-    session.setAttribute("setID", id);
+        session.setAttribute("setID", id);
     %>
 </body>
 <%-- <p> Values entered: <%= patientID%> + ${param.date}  + ${param.NailArtist} + ${param.proc_code} </p> --%>
