@@ -201,9 +201,9 @@ public class Admins {
          //  TESTER CODE
         // Test SELECT
         Admins A1 = new Admins();
-        A1.selectDB("A100");
-       A1.insertDB("A106","Ivon","Joseph","Kennesaw","iv@yahoo.fr","1234");
-        
+        A1.selectDB("A101");
+       //A1.insertDB("A106","Ivon","Joseph","Kennesaw","iv@yahoo.fr","1234");
+        A1.setPhonenumber("7866172013");
         A1.display();
         
         // Test DELETE

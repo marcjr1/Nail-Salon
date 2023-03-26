@@ -7,7 +7,6 @@ package BusinessObjects;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,8 +19,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Marc-Henry Moise Jr
  */
-@WebServlet(name = "deleteServlet", urlPatterns = {"/deleteServlet"})
-public class deleteServlet extends HttpServlet {
+@WebServlet(name = "AdmUpdateServlet", urlPatterns = {"/AdmUpdateServlet"})
+public class AdmUpdateServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,27 +36,29 @@ public class deleteServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-           HttpSession session = request.getSession();
-            HttpSession sessId = request.getSession();
-            HttpSession sessionList = request.getSession();
-            List<Appointments> getcustAppt = (List<Appointments>)sessionList.getAttribute("Session_list");
-            Appointments appt;
-            
-            appt = (Appointments) session.getAttribute("appt");
-            String id = request.getParameter("id");
-            
-            
-            
-            appt.selectID(Integer.parseInt(id)); 
-            appt.deleteidDB();
-            
-            sessId.setAttribute("id",id);
-            
-            session.setAttribute("appt", appt);
-            session.setAttribute("Session_list", getcustAppt);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("CustomerDashboard.jsp");
+              HttpSession session = request.getSession();
+           Admins A1=(Admins)session.getAttribute("A1");
+           out.println(A1.getAdmin_id());
+           out.println(A1.getFirstname());
+           out.println(A1.getLastname());
+           out.println(A1.getEmail());
+           out.println(A1.getPhonenumber());
+           out.println(A1.getPasswd());
+           String fname,lname,email,phoneNumber,ppw;
+           fname = request.getParameter("firstname");
+           lname = request.getParameter("lastname");
+           email = request.getParameter("email");
+           phoneNumber= request.getParameter("PhoneNumber");
+           ppw = request.getParameter("password");
+            A1.setFirstname(fname);
+            A1.setLastname(lname);
+            A1.setEmail(email);
+            A1.setPhonenumber(phoneNumber);
+            A1.setPasswd(ppw);
+            A1.updateDB();
+            RequestDispatcher dispatcher = request.getRequestDispatcher("AdmDashBoard.jsp");
             dispatcher.forward(request, response);
-            
+           
         }
     }
 

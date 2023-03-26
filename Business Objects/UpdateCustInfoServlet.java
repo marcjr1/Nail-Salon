@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 package BusinessObjects;
+import BusinessObjects.Customers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,8 +20,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Marc-Henry Moise Jr
  */
-@WebServlet(name = "deleteServlet", urlPatterns = {"/deleteServlet"})
-public class deleteServlet extends HttpServlet {
+@WebServlet(name = "UpdateCustInfoServlet", urlPatterns = {"/UpdateCustInfoServlet"})
+public class UpdateCustInfoServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,26 +38,28 @@ public class deleteServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
            HttpSession session = request.getSession();
-            HttpSession sessId = request.getSession();
-            HttpSession sessionList = request.getSession();
-            List<Appointments> getcustAppt = (List<Appointments>)sessionList.getAttribute("Session_list");
-            Appointments appt;
-            
-            appt = (Appointments) session.getAttribute("appt");
-            String id = request.getParameter("id");
-            
-            
-            
-            appt.selectID(Integer.parseInt(id)); 
-            appt.deleteidDB();
-            
-            sessId.setAttribute("id",id);
-            
-            session.setAttribute("appt", appt);
-            session.setAttribute("Session_list", getcustAppt);
+           Customers cid=(Customers)session.getAttribute("c1");
+           out.println(cid.getCustomer_ID());
+           out.println(cid.getFname());
+           out.println(cid.getLname());
+           out.println(cid.getAddr());
+           out.println(cid.getPpw());
+           String fname,lname,addr,email,ppw;
+           fname = request.getParameter("firstname");
+           lname = request.getParameter("lastname");
+           addr = request.getParameter("Address");
+           email = request.getParameter("email");
+           ppw = request.getParameter("password");
+            cid.setFname(fname);
+            cid.setLname(lname);
+            cid.setAddr(addr);
+            cid.setEmail(email);
+            cid.setPpw(ppw);
+            cid.updateDB();
             RequestDispatcher dispatcher = request.getRequestDispatcher("CustomerDashboard.jsp");
             dispatcher.forward(request, response);
-            
+           
+           
         }
     }
 
