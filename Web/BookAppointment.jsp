@@ -12,9 +12,9 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
         <link rel="stylesheet" href="Anfr.css">
-
         <title>Appointment Form</title>
     </head>
     <body>
@@ -100,7 +100,7 @@
         </div>
     </div>
     <script>
-        alert("Sorry we are close on saturdays and sundays");
+        sweetAlert("Sorry", "We are close on saturday and sunday !", "warning");
     </script>
 </body>
 <%-- <p> Values entered: <%= patientID%> + ${param.date}  + ${param.NailArtist} + ${param.proc_code} </p> --%>

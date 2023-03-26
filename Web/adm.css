@@ -20,7 +20,7 @@ and open the template in the editor.
   box-sizing: border-box;
 }
 body {
-  font-family: sans-serif;
+ font-family: 'Alkatra', cursive,verdana,sans-serif;
  
 }
 .logo {
@@ -101,13 +101,18 @@ body {
 }
 
 body {
-  font-family: sans-serif;
+  font-family: 'Alkatra', cursive,verdana,sans-serif;
 }
 
 .hero {
   height: calc(100vh - 80px);
   background-image: url(Images/Nail.jpg);
+   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+   background-color:#C27E79;
 }
 
 .container {
@@ -176,12 +181,12 @@ body {
     font-size: 15px;
     text-decoration: none;
     background-color:  #C27E79;
-    padding: 10px 40px;
+    padding: 8px 10px;
     border-radius: 3px;
     cursor: pointer;
     box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-
     transition: all 0.2s ease;
+    font-family: 'Alkatra', cursive,verdana,sans-serif;
 }
 
 .btn:hover {

@@ -1,11 +1,11 @@
 <%-- 
-    Document   : CustRegForm
-    Created on : Jan 20, 2023, 8:04:11 PM
+    Document   : AdmUpdatePage
+    Created on : Mar 13, 2023, 2:58:36 PM
     Author     : Marc-Henry Moise Jr
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="BusinessObjects.Customers"%>
+<%@page import="BusinessObjects.Admins"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -18,6 +18,11 @@
         <title>Customer Register Form</title>
     </head>
     <body>
+        <%
+            Admins A1;
+            A1 = (Admins) session.getAttribute("A1");
+            String Adm = A1.getAdmin_id();
+        %>
         <div class="menu-bar">
             <h1 class="logo">New<span> Nails Salon</span></h1>
             <ul>
@@ -46,26 +51,14 @@
             </ul>
         </div>
         <div class="container">
-            <form action="CustRegServlet" method="post" >
-                <div class="form__text">Register</div>
-                <jsp:useBean id="c1" scope="session" class="BusinessObjects.Customers"/>
+            <form action="AdmUpdateServlet" method="post" >
+                <div class="form__text">Update Admin Info</div>
+
                 <div class="form__group">
                     <input
                         type="text"
                         class="form__input"
-                        placeholder="Customer ID"
-                        name="Customer ID"
-                        required
-                        />
-                    <label for="Customer ID" class="form__label">
-                        Customer ID
-                    </label>
-                </div>
-                <div class="form__group">
-                    <input
-                        type="text"
-                        class="form__input"
-                        placeholder="First Name"
+                        value="<%=A1.getFirstname()%>"
                         name="firstname"
                         required
                         />
@@ -77,7 +70,7 @@
                     <input
                         type="text"
                         class="form__input"
-                        placeholder="Last Name"
+                        value="<%=A1.getLastname()%>"
                         name="lastname"
                         required
                         />
@@ -85,23 +78,12 @@
                         Last Name
                     </label>
                 </div>
-                <div class="form__group">
-                    <input
-                        type="text"
-                        class="form__input"
-                        placeholder="Address"
-                        name="Address"
-                        required
-                        />
-                    <label for="Address" class="form__label">
-                        Address
-                    </label>
-                </div>
+
                 <div class="form__group">
                     <input
                         type="email"
                         class="form__input"
-                        placeholder="Email"
+                        value="<%=A1.getEmail()%>"
                         name="email"
                         required
                         />
@@ -109,12 +91,24 @@
                         Email
                     </label>
                 </div>
+                <div class="form__group">
+                    <input
+                        type="text"
+                        class="form__input"
+                        value="<%=A1.getPhonenumber()%>"
+                        name="PhoneNumber"
+                        required
+                        />
+                    <label for="PhoneNumber" class="form__label">
+                        Phone Number
+                    </label>
+                </div>
 
                 <div class="form__group">
                     <input
                         type="password"
                         class="form__input"
-                        placeholder="Password"
+                        value="<%=A1.getPasswd()%>"
                         name="password"
                         required
                         />
@@ -125,15 +119,9 @@
                 <div class="form__button">
                     <button class="btn" type="submit">Submit</button>
                 </div>
-                <div class="form__social">
-                    <div class="sign">Or Sign up using</div>
-                    <div class="social__icon">
-                        <i class="fab fa-facebook-f"></i>
-                        <i class="fab fa-twitter"></i>
-                        <i class="fab fa-google"></i>
-                    </div>
-                </div>
+
             </form>
         </div>
     </body>
 </html>
+

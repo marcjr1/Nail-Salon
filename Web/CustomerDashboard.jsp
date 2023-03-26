@@ -15,7 +15,10 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Alkatra&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="customeracc.css">
         <title>Customer Dashboard</title>
     </head>
@@ -79,16 +82,16 @@
 
         <a href="BookAppointment.jsp"><button class="btn">Book Appointment</button></a>
         <a href="Procedures.jsp"><button class="btn"> View Procedures</button></a>
-        <a href="UpdatePatientProfile.jsp"><button class="btn">Update Profile</button></a>
-        
-        <form action="BookAppointmentServlet" method="POST">
-            <table class="content-table " style="width:80%;">
+        <a href="UpdateCustinfo.jsp"><button class="btn">Update Profile</button></a>
 
-                <%
-                    Appointmentlist appt = new Appointmentlist();
+
+        <form action="BookAppointmentServlet" method="POST">
+            <table class="table content-table " style="width:80%;">
+
+                <%                    Appointmentlist appt = new Appointmentlist();
                     List<Appointments> list = appt.getcustAppt(c1.getCustomer_ID());
-                     HttpSession sessionList = request.getSession();
-                            sessionList.setAttribute("updatedAppt", appt);
+                    HttpSession sessionList = request.getSession();
+                    sessionList.setAttribute("updatedAppt", appt);
                     if (list != null) {
 
                         for (Appointments l : list) {%>
@@ -108,35 +111,32 @@
                     <td><%=l.getartists_Id()%></td>
 
                     <td class=" d-none text-center">
-                      
-                        <a class='btn btn-info btn-xs' href="EditAppt?id=<%=l.getiD()%>"><span class="glyphicon glyphicon-edit "></span> Edit</a>
-                       
-                        <a href="deleteServlet?id=<%=l.getiD()%>" class="btn btn-danger btn-xs"><span
+
+                        <a class='btn btn-info btn-xs' href="EditAppt?id=<%=l.getiD()%>"><button type="button" class=" btn btn-primary glyphicon glyphicon-edit  ">Edit</button> </a>
+
+                        <a href="deleteServlet?id=<%=l.getiD()%>" class="btn btn-danger btn-xs" id="delete"><span
                                 class="glyphicon glyphicon-remove"></span> Del</a>
                     </td>
                 </tr>
                 <%}
-
-
-                
-                }%>
+                    }%>
+                <h3 style="margin-top: 20px; display: inline-block; color: #664d03; background-color:#fff3cd; border-color:ffecb5; padding:.3rem 2rem; border-radius: 5px;" > You have <%=list.size()%> <%= list.size() > 1 ? " Appointments" : " Appointment"%> in your Appointment Cart </h2>     
 
             </table>
-        </form> 
-   
-                <script>
-                       <%
-                        int list_lenght = list.size();
-                       %>
-                        var list_length = '<%=list_lenght%>';
-                        var date = new Date();
-                        var fulldate =  date;
-                        
-                        if(list_length){
-                            alert("You don't have any appointment scheduled on " + fulldate);
-                        }
-                     
-                </script>
+        </form>
+        <script>
+            // Get all the delete buttons
+            const deleteButtons = document.querySelectorAll('#delete');
+
+            // Add a click event listener to each delete button
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Show an alert when the user clicks on the delete button
+                    sweetAlert("Delete Complete", "This appointment has been deleted", "success");
+                });
+            });
+
+        </script>
 
     </body>
 </html>

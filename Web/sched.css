@@ -20,7 +20,7 @@ and open the template in the editor.
   box-sizing: border-box;
 }
 body {
-  font-family: sans-serif;
+  font-family: 'Alkatra', cursive,verdana,sans-serif;
  
 }
 .logo {
@@ -101,7 +101,7 @@ body {
 }
 
 body {
-  font-family: sans-serif;
+  font-family: 'Alkatra', cursive,verdana,sans-serif;
 }
 
 
@@ -113,7 +113,7 @@ body {
 }
 
 body {
-  font-family: sans-serif;
+  font-family: 'Alkatra', cursive,verdana,sans-serif;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url(Images/Nail.jpg);
   background-size: cover;
@@ -183,4 +183,17 @@ body {
 .content-table tbody tr.active-row {
     font-weight: bold;
     color: #009879;
+}
+.btn {
+    color: #eee;
+    display: inline-block;
+    font-size: 15px;
+    text-decoration: none;
+    background-color:  #C27E79;
+    padding: 8px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    transition: all 0.2s ease;
+    font-family: 'Alkatra', cursive,verdana,sans-serif;
 }

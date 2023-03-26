@@ -13,7 +13,9 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Alkatra&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="sched.css">
         <title>Schedule</title>
     </head>
@@ -46,16 +48,16 @@
                 <li><a href="#">Contact us</a></li>
             </ul>
         </div>
-       
+
         <table class="content-table" style="width:80%; position: relative; left: 10%; margin-top: 5%;">
-            
+
             <%
-               Procedurelist proc = new Procedurelist();
+                Procedurelist proc = new Procedurelist();
                 List<Procedures> list = proc.getproceduresDb();
-                
-                for(Procedures l :  list) {%>
-             
-                <thead class="thead-light">
+
+                for (Procedures l : list) {%>
+
+            <thead class="thead-light">
                 <tr>
                     <th>ProcCode</th>
                     <th>ProcName</th>
@@ -68,8 +70,8 @@
                 <td><%=l.getprocCode()%></td>
                 <td><%=l.getprocName()%></td>
                 <td><%=l.getprocDesc()%></td>
-                <td><%=l.getCost() %></td>
-                
+                <td><%=l.getCost()%></td>
+
                 <td class="">
                     <a class='btn btn-info btn-xs' href="PatientEditAppointmentServlet?id=<span class="glyphicon glyphicon-edit "></span> Edit</a>
                     <a href="#" class="btn btn-danger btn-xs"><span
@@ -77,8 +79,8 @@
                 </td>
             </tr>
             <%}%>
-        
-            
+
+
         </table>
     </body>
 </html>

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : CustRegForm
-    Created on : Jan 20, 2023, 8:04:11 PM
+    Document   : UpdateCustinfo
+    Created on : Mar 7, 2023, 5:22:58 PM
     Author     : Marc-Henry Moise Jr
 --%>
 
@@ -18,6 +18,11 @@
         <title>Customer Register Form</title>
     </head>
     <body>
+        <%
+            Customers c1;
+            c1 = (Customers) session.getAttribute("c1");
+            String cid = c1.getCustomer_ID();
+        %>
         <div class="menu-bar">
             <h1 class="logo">New<span> Nails Salon</span></h1>
             <ul>
@@ -46,26 +51,14 @@
             </ul>
         </div>
         <div class="container">
-            <form action="CustRegServlet" method="post" >
-                <div class="form__text">Register</div>
-                <jsp:useBean id="c1" scope="session" class="BusinessObjects.Customers"/>
+            <form action="UpdateCustInfoServlet" method="post" >
+                <div class="form__text">Update Customer Info</div>
+
                 <div class="form__group">
                     <input
                         type="text"
                         class="form__input"
-                        placeholder="Customer ID"
-                        name="Customer ID"
-                        required
-                        />
-                    <label for="Customer ID" class="form__label">
-                        Customer ID
-                    </label>
-                </div>
-                <div class="form__group">
-                    <input
-                        type="text"
-                        class="form__input"
-                        placeholder="First Name"
+                        value="<%=c1.getFname()%>"
                         name="firstname"
                         required
                         />
@@ -77,7 +70,7 @@
                     <input
                         type="text"
                         class="form__input"
-                        placeholder="Last Name"
+                        value="<%=c1.getLname()%>"
                         name="lastname"
                         required
                         />
@@ -89,7 +82,7 @@
                     <input
                         type="text"
                         class="form__input"
-                        placeholder="Address"
+                        value="<%=c1.getAddr()%>"
                         name="Address"
                         required
                         />
@@ -101,7 +94,7 @@
                     <input
                         type="email"
                         class="form__input"
-                        placeholder="Email"
+                        value="<%=c1.getEmail()%>"
                         name="email"
                         required
                         />
@@ -114,7 +107,7 @@
                     <input
                         type="password"
                         class="form__input"
-                        placeholder="Password"
+                        value="<%=c1.getPpw()%>"
                         name="password"
                         required
                         />
@@ -125,14 +118,7 @@
                 <div class="form__button">
                     <button class="btn" type="submit">Submit</button>
                 </div>
-                <div class="form__social">
-                    <div class="sign">Or Sign up using</div>
-                    <div class="social__icon">
-                        <i class="fab fa-facebook-f"></i>
-                        <i class="fab fa-twitter"></i>
-                        <i class="fab fa-google"></i>
-                    </div>
-                </div>
+
             </form>
         </div>
     </body>

@@ -13,15 +13,24 @@ and open the template in the editor.
   --color-white: #e9e9e9;
   --color-black: #C27E79;
   --color-black-1: #212b38;
+  --global-body-font: 'Alkatra', cursive,verdana,sans-serif;
+}
+
+body {
+   font-family: var(--global-body-font);
+     background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)),
+    url(Images/Nail.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+   background-color:#C27E79;
 }
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-body {
-  font-family: sans-serif;
- 
 }
 .logo {
   color: var(--color-white);
@@ -100,35 +109,11 @@ body {
   box-sizing: border-box;
 }
 
-body {
-  font-family: sans-serif;
-}
 
-
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: sans-serif;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url(Images/Nail.jpg);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: fixed;
-   background-color:#C27E79;
-}
 * {
     /* Change your font family */
-    font-family: sans-serif;
+    font-family: 'Alkatra', cursive,verdana,sans-serif;
 }
-
-
 
 
 .content-table {
@@ -181,6 +166,8 @@ body {
     border-radius: 3px;
     cursor: pointer;
     box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-
     transition: all 0.2s ease;
+    font-family: 'Alkatra', cursive,verdana,sans-serif;
 }
+
+
