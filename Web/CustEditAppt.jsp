@@ -34,29 +34,29 @@
 
         %>
 
-        <div class="menu-bar">
+           <div class="menu-bar">
             <h1 class="logo">New<span> Nails Salon</span></h1>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="Procedures.jsp">Services</a></li>
                 <li><a href="#">Login<i class="fas fa-caret-down"></i></a>
                     <div class="dropdown-menu">
                         <ul>
-                            <li><a href="#">Admin</a></li>
+                            <li><a href="AdmLoginPage.jsp">Admin</a></li>
                             <li>
-                                <a href="#">Customer<i class="fas fa-caret-right"></i></a>
+                                <a href="CusttLoginpage.jsp">Customer<i class="fas fa-caret-right"></i></a>
 
                                 <div class="dropdown-menu-1">
                                     <ul>
-                                        <li><a href="#">Login</a></li>
-                                        <li><a href="#">Register</a></li>
+                                        <li><a href="CusttLoginpage.jsp">Login</a></li>
+                                        <li><a href="CustRegForm.jsp">Register</a></li>
                                     </ul>
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </li>
-                <li><a href="#">Blog</a>
+                <li><a href="hours.html">Hours</a>
                 </li>
                 <li><a href="#">Contact us</a></li>
             </ul>

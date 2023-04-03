@@ -18,11 +18,11 @@
     </head>
 
     <body>
-        <div class="menu-bar">
+           <div class="menu-bar">
             <h1 class="logo">New<span> Nails Salon</span></h1>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="#">About</a></li>
+                <li><a href="Procedures.jsp">Services</a></li>
                 <li><a href="#">Login<i class="fas fa-caret-down"></i></a>
                     <div class="dropdown-menu">
                         <ul>
@@ -40,7 +40,7 @@
                         </ul>
                     </div>
                 </li>
-                <li><a href="#">Blog</a>
+                <li><a href="hours.html">Hours</a>
                 </li>
                 <li><a href="#">Contact us</a></li>
             </ul>
