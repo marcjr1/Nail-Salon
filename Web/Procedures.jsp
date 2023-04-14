@@ -49,7 +49,7 @@
             </ul>
         </div>
 
-        <table class="content-table" style="width:80%; position: relative; left: 10%; margin-top: 5%;">
+        <table class="content-table" style="width:70%; position: relative; left: 5%; margin-top: 8%;">
 
             <%
                 Procedurelist proc = new Procedurelist();

@@ -4,13 +4,49 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
+<html lang="en">
     <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Alkatra&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="sched.css" />
+       <title>Error - Invalid Login</title>
     </head>
+ 
     <body>
-        <div>TODO write content</div>
+
+        <div class="menu-bar">
+            <h1 class="logo">New<span> Nails Salon</span></h1>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="Procedures.jsp">Services</a></li>
+                <li><a href="#">Login<i class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-menu">
+                        <ul>
+                            <li><a href="AdmLoginPage.jsp">Admin</a></li>
+                            <li>
+                                <a href="CusttLoginpage.jsp">Customer<i class="fas fa-caret-right"></i></a>
+
+                                <div class="dropdown-menu-1">
+                                    <ul>
+                                        <li><a href="CusttLoginpage.jsp">Login</a></li>
+                                        <li><a href="CustRegForm.jsp">Register</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="hours.html">Hours</a>
+                </li>
+                <li><a href="#">Contact us</a></li>
+            </ul>
+        </div>
+    
+       	<h1>Error - Invalid Login</h1>
+	<p>Sorry, the username and/or password you entered are incorrect.</p>
+	<a href="CusttLoginpage.jsp">Click here to try again</a>
     </body>
 </html>
