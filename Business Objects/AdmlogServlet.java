@@ -72,7 +72,7 @@ public class AdmlogServlet extends HttpServlet {
                 else {
 			
              //Step #6 - Use RequestDispatcher to forward to JStudentLookup.jsp
-             RequestDispatcher rd = request.getRequestDispatcher("ErrorPage.html");
+             RequestDispatcher rd = request.getRequestDispatcher("AdmErrorPage.html");
              rd.forward(request, response);  
                 }
                 
